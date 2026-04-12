@@ -1,0 +1,49 @@
+server:
+  port: 80
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: email-api
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: ${MAX_FILE_SIZE:50MB}
+      max-request-size: ${MAX_REQUEST_SIZE:50MB}
+      file-size-threshold: 1MB
+      resolve-lazily: false
+  codec:
+    max-in-memory-size: ${MAX_FILE_SIZE:50MB}
+  mail:
+    host: ${EMAIL_HOST}
+    port: ${EMAIL_PORT}
+    from: ${EMAIL_USERNAME}
+    display-name: ${EMAIL_DISPLAY_NAME}
+    username: ${EMAIL_USERNAME}
+    password: ${EMAIL_APP_PASSWORD}
+    properties:
+      mail.smtp.auth: "true"
+      mail.smtp.starttls.enable: "true"
+      mail.smtp.connectiontimeout: "5000"
+      mail.smtp.timeout: "5000"
+      mail.smtp.writetimeout: "5000"
+      mail.smtp.ssl.protocols: "TLSv1.2"
+      mail.transport.protocol: "smtp"
+      mail.debug: "false"
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: true # Desactivar en desarrollo
+
+logging:
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd HH:mm:ss}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr([${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]){yellow} %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}"
+  level:
+    org.springframework: WARN
+    org.hibernate: WARN

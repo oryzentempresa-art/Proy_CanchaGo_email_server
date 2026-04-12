@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title th:text="${appName} + ' - Código de Verificación'">AppName - Código de Verificación</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #F5F5F5;
+      color: #1A1A2E;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrapper {
+      max-width: 560px;
+      margin: 32px auto;
+      background-color: #FFFFFF;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(26, 26, 46, 0.10);
+    }
+
+    /* ── Header con gradiente azul ── */
+    .header {
+      background: linear-gradient(135deg, #2884D8 0%, #6AB0EE 100%);
+      padding: 36px 40px 28px;
+      text-align: center;
+    }
+
+    .header-logo {
+      text-align: center;
+    }
+
+    .header-icon {
+      width: 46px;
+      height: 46px;
+      background: rgba(255,255,255,0.20);
+      border-radius: 12px;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 46px;
+      text-align: center;
+      font-size: 24px;
+      margin-right: 12px;
+    }
+
+    .header-app-name {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 26px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.5px;
+    }
+
+    .header-subtitle {
+      margin-top: 10px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 400;
+    }
+
+    /* ── Cuerpo del correo ── */
+    .body {
+      padding: 36px 40px;
+    }
+
+    .greeting {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1A1A2E;
+      margin-bottom: 10px;
+    }
+
+    .greeting span {
+      color: #2884D8;
+    }
+
+    .intro-text {
+      font-size: 14px;
+      color: #6B7280;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    /* ── Label "Tu código" ── */
+    .code-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #6B7280;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .otp-table {
+      margin: 0 auto 16px;
+      border-collapse: separate;
+      border-spacing: 14px 0;
+    }
+
+    .otp-digit {
+      width: 60px;
+      height: 68px;
+      background: #EBF5FF;
+      border: 2px solid #BBE0FF;
+      border-radius: 14px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 28px;
+      font-weight: 700;
+      color: #155CFA;
+      padding: 0;
+    }
+
+    /* ── Nota de expiración ── */
+    .expiry-note {
+      text-align: center;
+      font-size: 12px;
+      color: #6B7280;
+      margin-bottom: 32px;
+    }
+
+    .expiry-note strong {
+      color: #1A1A2E;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      border: none;
+      border-top: 1px solid #E0E0E0;
+      margin-bottom: 24px;
+    }
+
+    /* ── Nota de seguridad ── */
+    .security-box {
+      background: #F5F6FA;
+      border-left: 3px solid #2884D8;
+      border-radius: 0 10px 10px 0;
+      padding: 14px 16px;
+      margin-bottom: 28px;
+    }
+
+    .security-box p {
+      font-size: 12px;
+      color: #6B7280;
+      line-height: 1.6;
+    }
+
+    .security-box strong {
+      color: #1A1A2E;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: #F5F5F5;
+      padding: 20px 40px;
+      text-align: center;
+      border-top: 1px solid #EEEEEE;
+    }
+
+    .footer p {
+      font-size: 11px;
+      color: #B0B0B0;
+      line-height: 1.6;
+    }
+
+    .footer a {
+      color: #3587D7;
+      text-decoration: none;
+    }
+
+    @media (max-width: 580px) {
+      .wrapper { margin: 0; border-radius: 0; }
+      .header, .body, .footer { padding-left: 24px; padding-right: 24px; }
+      .otp-digit { width: 48px; height: 56px; font-size: 22px; }
+      .otp-table { border-spacing: 10px 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-logo">
+        <span class="header-icon">⚽</span><!--
+        --><span class="header-app-name" th:text="${appName}">AppName</span>
+      </div>
+      <p class="header-subtitle">Tu código de verificación está listo</p>
+    </div>
+
+    <!-- CUERPO -->
+    <div class="body">
+
+      <p class="greeting">
+        ¡Hola, <span th:text="${userName}">Usuario</span>!
+      </p>
+
+      <p class="intro-text">
+        Gracias por registrarte en <strong th:text="${appName}">AppName</strong>. Para completar
+        tu registro y activar tu cuenta, ingresa el siguiente código de verificación en la
+        aplicación. Este código es de uso único y personal.
+      </p>
+
+      <p class="code-label">Tu código de verificación</p>
+
+      <!-- OTP: cada dígito en su propia celda individual -->
+      <table class="otp-table">
+        <tr>
+          <td class="otp-digit" th:text="${#strings.substring(otpCode, 0, 1)}">0</td>
+          <td class="otp-digit" th:text="${#strings.substring(otpCode, 1, 2)}">0</td>
+          <td class="otp-digit" th:text="${#strings.substring(otpCode, 2, 3)}">0</td>
+          <td class="otp-digit" th:text="${#strings.substring(otpCode, 3, 4)}">0</td>
+        </tr>
+      </table>
+
+      <p class="expiry-note">
+        Válido por <strong th:text="${otpDuration}">5</strong> minutos. No lo compartas con nadie.
+      </p>
+
+      <hr class="divider" />
+
+      <div class="security-box">
+        <p>
+          <strong>🔒 Aviso de seguridad:</strong> Si no creaste una cuenta en
+          <strong th:text="${appName}">AppName</strong>, puedes ignorar este correo.
+          Nadie de nuestro equipo te pedirá este código por teléfono o chat.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>
+        © <span th:text="${T(java.time.Year).now().getValue()}">2026</span> <span th:text="${appName}">AppName</span>. Todos los derechos reservados.
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
