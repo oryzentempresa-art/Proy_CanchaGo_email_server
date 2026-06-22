@@ -1,11 +1,11 @@
 # email-api
 
 # BUILD PRODUCTION
-docker build . -t oryzentsac/apps:email-api-12062026-1930
-docker push oryzentsac/apps:email-api-12062026-1930
+docker build . -t oryzentsac/apps:email-api-21062026-1000
+docker push oryzentsac/apps:email-api-21062026-1000
 
 # RUN PRODUCTION
-docker pull oryzentsac/apps:email-api-12062026-1930
+docker pull oryzentsac/apps:email-api-21062026-1000
 
 docker run \
 -e SPRING_PROFILES_ACTIVE=prod \
@@ -14,4 +14,4 @@ docker run \
 -p 127.0.0.1:1002:80 \
 --network shared_net \
 --restart=unless-stopped \
--d oryzentsac/apps:email-api-12062026-1930
+-d oryzentsac/apps:email-api-21062026-1000
